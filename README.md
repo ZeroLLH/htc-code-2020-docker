@@ -35,8 +35,8 @@ begin output result :
 ```
 ###Running Commands
 ```
-docker run --rm -it  --net host -e "SERVER_PORT=8000" --name "trace-filter1" -d trace-filter
-docker run --rm -it  --net host -e "SERVER_PORT=8001" --name "trace-filter2" -d trace-filter
-docker run --rm -it  --net host -e "SERVER_PORT=8002" --name "trace-aggregator" -d trace-aggregator
-docker run --rm --net host -e "SERVER_PORT=8081" --name scoring -d registry.cn-hangzhou.aliyuncs.com/cloud_native_match/scoring:0.1
+docker run --rm -it  --net host -e "SERVER_PORT=8000" -m=4G --memory-swap=0 --cpuset-cpus="0,1" --name "trace-filter1" -d trace-image
+docker run --rm -it  --net host -e "SERVER_PORT=8001" -m=4G --memory-swap=0 --cpuset-cpus="2,3" --name "trace-filter2" -d trace-image
+docker run --rm -it  --net host -e "SERVER_PORT=8002" -m=2G --memory-swap=0 --cpuset-cpus="4" --name "trace-aggregator" -d trace-image
+docker run --rm --net host -e "SERVER_PORT=8081" -m=1G --memory-swap=0 --cpuset-cpus="5,6" --name scoring -d registry.cn-hangzhou.aliyuncs.com/cloud_native_match/scoring:0.1
 ```
