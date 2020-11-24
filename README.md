@@ -28,10 +28,8 @@ begin output result :
 ###Steps
 ```
 1. 把jdk8-271(重命名为jdk8.tar.gz)放进trace-aggregator和trace-filter的文件夹中(或者改start.sh的jdk版本)
-2. 把打好的jar分别放进trace-aggregator和trace-filter的文件夹中
-3. 进入trace-aggregator文件夹执行docker build -t "trace-aggregator" .
-4. 进入trace-filter文件夹执行docker build -t "trace-filter" .
-5. 执行docker pull registry.cn-hangzhou.aliyuncs.com/cloud_native_match/scoring:0.1
+2. 把打好的jar分别放进trace-image的文件夹中
+3. docker build -t "trace-image" .
 ```
 ###Running Commands
 ```
