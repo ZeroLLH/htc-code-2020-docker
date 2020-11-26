@@ -38,3 +38,9 @@ docker run --rm -it  --net host -e "SERVER_PORT=8001" -m=4G --memory-swap=0 --cp
 docker run --rm -it  --net host -e "SERVER_PORT=8002" -m=2G --memory-swap=0 --cpuset-cpus="4" --name "trace-aggregator" -d trace-image
 docker run --rm --net host -e "SERVER_PORT=8081" -m=1G --memory-swap=0 --cpuset-cpus="5,6" --name scoring -d registry.cn-hangzhou.aliyuncs.com/cloud_native_match/scoring:0.1
 ```
+###Push Commands
+```
+docker login --username=ethanlhliang registry.cn-shanghai.aliyuncs.com
+docker tag trace-image registry.cn-shanghai.aliyuncs.com/htc-code-2020/htc-code-2020:<version>
+docker push registry.cn-shanghai.aliyuncs.com/htc-code-2020/htc-code-2020:<version>
+```
