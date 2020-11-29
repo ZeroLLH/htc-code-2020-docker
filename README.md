@@ -33,13 +33,17 @@ begin output result :
 ```
 ###Running Commands
 ```
-docker run --rm -it  --net host -e "SERVER_PORT=8000" -m=4G --memory-swap=0 --cpuset-cpus="0,1" --name "trace-filter1" -d trace-image
-docker run --rm -it  --net host -e "SERVER_PORT=8001" -m=4G --memory-swap=0 --cpuset-cpus="2,3" --name "trace-filter2" -d trace-image
-docker run --rm -it  --net host -e "SERVER_PORT=8002" -m=2G --memory-swap=0 --cpuset-cpus="4" --name "trace-aggregator" -d trace-image
+docker run --rm -it --net host -e "SERVER_PORT=8000" -m=4G --memory-swap=0 --cpuset-cpus="0,1" --name "trace-filter1" -d trace-image
+docker run --rm -it --net host -e "SERVER_PORT=8001" -m=4G --memory-swap=0 --cpuset-cpus="2,3" --name "trace-filter2" -d trace-image
+docker run --rm -it --net host -e "SERVER_PORT=8002" -m=2G --memory-swap=0 --cpuset-cpus="4" --name "trace-aggregator" -d trace-image
 docker run --rm --net host -e "SERVER_PORT=8081" -m=1G --memory-swap=0 --cpuset-cpus="5,6" --name scoring -d registry.cn-hangzhou.aliyuncs.com/cloud_native_match/scoring:0.1
+docker run --rm --net host -e "SERVER_PORT=8081" -m=1G --memory-swap=0 --cpuset-cpus="5,6" --name scoring -d registry.cn-hangzhou.aliyuncs.com/cloud_native_match/scoring:0.2
 ```
 ###Push Commands
 ```
+system start docker
+cd /usr/local/src/trace-image
+docker build -t "trace-image" .
 docker login --username=ethanlhliang registry.cn-shanghai.aliyuncs.com
 docker tag trace-image registry.cn-shanghai.aliyuncs.com/htc-code-2020/htc-code-2020:<version>
 docker push registry.cn-shanghai.aliyuncs.com/htc-code-2020/htc-code-2020:<version>
